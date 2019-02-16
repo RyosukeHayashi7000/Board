@@ -11,10 +11,14 @@ class BoardsController < ApplicationController
     Board.create(board_params)
     redirect_to('/boards')
   end
+
+  def show
+    @board = Board.find_by(id: params[:id])
+  end  
   
   private
   def board_params
-    params.require(:board).permit(:name, :title, :body, :image, :address, :mail)
+    params.require(:board).permit(:name, :title, :body, :image, :address, :mail, :comment)
   end  
 end
 

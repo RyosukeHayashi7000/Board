@@ -1,0 +1,31 @@
+<div class="d-flex align-items-center">
+  <h1>掲示板作成</h1>
+  <div class="ml-auto boards__linkBox">
+    <a href="/boards" class="btn btn-outline-dark">掲示板一覧</a>
+  </div>
+</div>
+<%= form_for @board do |f| %>
+    <div class="form-group">
+      <%= f.label :name , '名前' %>
+      <%= f.text_field :name, class: 'form-control' %>
+      </div>     
+    <div class="form-group">
+      <%= f.label :title, '品物名' %>
+      <%= f.text_field :title, class: 'form-control' %> 
+      </div>   
+    <div class="form-group">
+      <%= f.label :comment , 'コメント' %>
+      <%= f.text_area :comment, class: 'form-control', rows: 10 %> 
+    </div>
+    <div class="form-group">
+      <%= f.label :address, '受け渡し場所' %>
+      <%= f.text_field :address, class: 'form-control' %> 
+      </div> 
+      <div class="form-group">
+      <%= f.label :mail, '連絡先' %>
+      <%= f.text_field :mail, class: 'form-control' %> 
+      </div>   
+    <p><%=f.label "画像をアップロード" %><br>
+    <%= f.file_field :image %></p>
+    <%= f.submit '保存', class: 'btn btn-primary' %>  
+<% end %>

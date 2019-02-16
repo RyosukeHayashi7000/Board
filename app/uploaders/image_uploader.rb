@@ -10,6 +10,10 @@ class ImageUploader < CarrierWave::Uploader::Base
   process resize_to_limit: [1200, 900]
 
   # バージョンを作成して、別のリサイズを指定することもできます
+  version :thumb2 do
+    process resize_to_limit: [720, 540]
+  end    
+  
   version :thumb do
       process resize_to_limit: [240, 180]
   end    

@@ -19,6 +19,7 @@
       <th>受け渡し場所</th>
       <th>作成日時</th>
       <th></th>
+      <th></th>
       
     </tr>
   </thead>
@@ -35,6 +36,7 @@
      <td><%= board.address %></td>
      <td><%= board.created_at.to_s(:datetime_jp) %></td>
      <td><%= link_to "詳細", board, class: 'btn btn-outline-dark' %></td>
+     <td><%= link_to "削除", board, class: 'btn btn-outline-dark', method: :delete %></td>
      <td>
      
      

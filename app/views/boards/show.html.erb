@@ -1,0 +1,41 @@
+<div class="d-flex align-items-center mt-4 mb-4">
+  <div class="ml-auto boards__linkBox">
+    <%= link_to "一覧", "/boards", class: 'btn btn-outline-dark' %>
+    <%= link_to "編集", "/boards", class: 'btn btn-outline-dark' %>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <h4><%= @board.title %></h4>
+  </div>
+  <div class="card-body">
+   <div class="description"> 
+       <div class="image">
+         <p class="card-text"><%= image_tag @board.image.thumb2.url if @board.image.present? %></p>
+       </div> 
+      <table border="1">
+       <tr>
+       <td>投稿者名</td><td><%= @board.name %></td>
+       </tr>
+       <tr>
+       <td>連絡先</td><td><%= @board.mail %></td>
+       </tr>
+       <tr>
+       <td>受渡し希望</td><td><%= @board.address %></td>
+       </tr>
+       <tr>
+       <td>作成日</td><td><%= @board.created_at.to_s(:datetime_jp) %></td>
+       </tr>
+       <tr>
+       <td>最終更新</td><td><%= @board.updated_at.to_s(:datetime_jp) %></td>
+       </tr>
+　   </table>
+    </div> 
+      <div class="comment">
+        <%= simple_format(@board.comment) %>
+      </div>  
+　 </div>
+  
+  
+</div>

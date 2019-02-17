@@ -1,8 +1,17 @@
 ja:
+  activerecord:
+   attributes:
+    board:
+      name: 投稿者名
+      title: 品物名
+      comment: コメント
+      address: 受け渡し場所
+      mail: 連絡先
+
   views:
     pagination:
-      first: "最初"
-      last: "最後"
-      previous: "前"
-      next: "次"
-      truncate: "..."
+      first: 最初
+      last: 最後
+      previous: 前
+      next: 次
+      truncate: ...

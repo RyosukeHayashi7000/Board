@@ -4,6 +4,9 @@
     <%= link_to "編集", edit_board_path(@board), class: 'btn btn-outline-dark' %>
   </div>
 </div>
+<% if flash[:notice] %>
+  <div class="alert alert-primary"><%= flash[:notice] %></div>
+  <% end %>
 
 <div class="card">
   <div class="card-header">
@@ -36,6 +39,7 @@
         <%= simple_format(@board.comment) %>
       </div>  
 　 </div>
+  
   
   
 </div>

@@ -35,12 +35,12 @@ class BoardsController < ApplicationController
   
   def destroy
     @board.destroy
-    redirect_to boards_path, flash: {notice: "#{@board.title}の「投稿が削除されました」"}
+    redirect_to boards_path, flash: {notice: "「ID番号#{@board.id}の投稿が削除されました」"}
   end  
   
   private
   def board_params
-    params.require(:board).permit(:name, :title, :body, :image, :address, :mail, :comment)
+    params.require(:board).permit(:name, :title, :body, :image, :address, :mail, :comment, tag_ids: [])
   end 
   
   def set_target_board

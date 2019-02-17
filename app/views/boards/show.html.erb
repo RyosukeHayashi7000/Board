@@ -11,7 +11,11 @@
 <div class="card">
   <div class="card-header">
     <h4><%= @board.title %></h4>
+    <% @board.tags.each do |tag| %>
+      <span class="badge badge-primary"><%= tag.name %></span>
+    <% end %>  
   </div>
+
   <div class="card-body">
    <div class="description"> 
        <div class="image">

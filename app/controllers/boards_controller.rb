@@ -2,7 +2,7 @@ class BoardsController < ApplicationController
   before_action :set_target_board, only: %i[show edit update destroy]
   
   def index
-    @boards = Board.all
+    @boards = Board.all.order(created_at: :desc).page(params[:page]).per(5)
   end
 
   def new

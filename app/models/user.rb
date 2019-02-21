@@ -14,7 +14,9 @@
 #
 
 class User < ApplicationRecord
- validates :name,
+ has_secure_password
+ 
+    validates :name,
      presence: true,
      uniqueness: true,
      length: {maximum: 16},
@@ -23,5 +25,5 @@ class User < ApplicationRecord
          message: 'は小文字英数字で入力して下さい'
      }
  validates :password,
-    length: { minimum: 8}
+    length: { minimum: 8 }
 end

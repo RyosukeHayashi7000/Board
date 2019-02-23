@@ -1,7 +1,10 @@
 <div class="d-flex align-items-center mt-4 mb-4">
   <div class="ml-auto boards__linkBox">
     <%= link_to "一覧", boards_path, class: 'btn btn-outline-dark' %>
+    <% if @current_user.id == @user.id %>
     <%= link_to "編集", edit_board_path(@board), class: 'btn btn-outline-dark' %>
+    <%= link_to "削除", board_path(@board), class: 'btn btn-outline-dark', method: :delete %>
+    <% end %>
   </div>
 </div>
 <% if flash[:notice] %>
@@ -23,7 +26,7 @@
        </div> 
       <table border="1">
        <tr>
-       <td>投稿者名</td><td><%= @board.name %></td>
+       <td>投稿者名</td><td><%= User.find_by(id:@board.user_id).name %></td>
        </tr>
        <tr>
        <td>連絡先</td><td><%= @board.mail %></td>

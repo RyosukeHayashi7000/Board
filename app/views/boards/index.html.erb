@@ -44,7 +44,11 @@
      <%= image_tag board.image_url(:thumb) if board.image.present? %>
      </td>
      <td><%= board.title %></td>
-     <td><%= User.find_by(id:board.user_id).name %></td>
+     <% if @current_user.id == board.user_id %>
+      <td><%= User.find_by(id:board.user_id).name %></td>
+     <% else %>
+     <td><%= link_to User.find_by(id:board.user_id).name, user_path(board.user_id) %></td>
+     <% end %>
      <td><%= board.address %></td>
      <td><%= board.created_at.to_s(:datetime_jp) %></td>
      <td><%= link_to "詳細", board, class: 'btn btn-outline-dark' %></td>

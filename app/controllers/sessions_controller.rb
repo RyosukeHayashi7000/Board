@@ -3,9 +3,9 @@ class SessionsController < ApplicationController
     user = User.find_by(name: params[:session][:name])
     if user && user.authenticate(params[:session][:password])
        session[:user_id] = user.id
-       redirect_to mypage_path
+       redirect_to mypage_path, flash: {notice: "ログインしました"}
     else
-       render 'home/index'
+       redirect_to root_path, flash: {notice: "ユーザー名またはパスワードが間違っています"}
     end   
   end 
    def destroy

@@ -1,0 +1,42 @@
+<div class="d-flex align-items-center mt-4 mb-4">
+  <div class="ml-auto boards__linkBox">
+    <%= link_to "一覧", boards_path, class: 'btn btn-outline-dark' %>
+  </div>
+</div>    
+<h1><%= @user.name %>さんの投稿一覧</h1>
+<p>
+
+<table class="table table-hover boards__table">
+  <thead class="thead-dark">
+    <tr>
+      <th>ID</th>
+      <th>画像</th>
+      <th>品物名</th>
+      <th>作成者</th>
+      <th>受け渡し場所</th>
+      <th>作成日時</th>
+      <th></th>
+      <th></th>
+      
+    </tr>
+  </thead>
+  <tbody>
+  
+  <% @boards.each do |board| %>
+    <tr>
+   
+     <th><%= board.id %></th>
+     <td>
+     <%= image_tag board.image_url(:thumb) if board.image.present? %>
+     </td>
+     <td><%= board.title %></td>
+     <td><%= User.find_by(id:board.user_id).name %></td>
+     <td><%= board.address %></td>
+     <td><%= board.created_at.to_s(:datetime_jp) %></td>
+     <td><%= link_to "詳細", board, class: 'btn btn-outline-dark' %></td>
+     </tr>
+  <% end %>
+    
+  </tbody>
+</table>
+<%= paginate @boards %>

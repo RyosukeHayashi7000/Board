@@ -1,5 +1,7 @@
 <h1>ログイン</h1>
-
+<% if flash[:notice] %>
+  <div class="alert alert-danger"><%= flash[:notice] %></div>
+  <% end %>
 <%= form_for(:session, method: :post, url: login_path) do |f| %>
   <div class="form-group">
     <%= f.label :name, 'ユーザー名' %>

@@ -7,7 +7,7 @@ class UsersController < ApplicationController
     user = User.new(user_params)
     if user.save
       session[:user_id] = user.id
-      redirect_to mypage_path
+      redirect_to mypage_path, flash: {notice: "ユーザー登録しました"}
     else
       redirect_to :back, flash: {
         user: user,
@@ -17,6 +17,9 @@ class UsersController < ApplicationController
   end
 
   def me
+    @user = User.find_by(id:@current_user.id)
+    @boards = Board.where(user_id:@user.id)
+    @boards = @boards.order(created_at: :desc).page(params[:page]).per(5)
     
   end
 

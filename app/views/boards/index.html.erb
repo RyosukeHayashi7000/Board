@@ -12,7 +12,7 @@
         %>
     <% end %> 
     <% if  @current_user %>     
-    <%= link_to '新規作成', new_board_path, class:"btn btn-outline-dark" %>
+    <%= link_to '新規投稿', new_board_path, class:"btn btn-outline-dark" %>
     <% end %>
   </div>
 </div>
@@ -44,17 +44,11 @@
      <%= image_tag board.image_url(:thumb) if board.image.present? %>
      </td>
      <td><%= board.title %></td>
-     <td><%= board.name %></td>
+     <td><%= User.find_by(id:board.user_id).name %></td>
      <td><%= board.address %></td>
      <td><%= board.created_at.to_s(:datetime_jp) %></td>
      <td><%= link_to "詳細", board, class: 'btn btn-outline-dark' %></td>
-     <td><%= link_to "削除", board, class: 'btn btn-outline-dark', method: :delete %></td>
-     <td>
-     
-     
-     
-
-    </tr>
+     </tr>
     <% end %>
     
   </tbody>

@@ -23,6 +23,12 @@ class UsersController < ApplicationController
     
   end
 
+  def show
+    @user = User.find_by(id:params[:id])
+    @boards = Board.where(user_id:params[:id])
+    @boards = @boards.order(created_at: :desc).page(params[:page]).per(5)
+  end  
+
   private
 
   def user_params

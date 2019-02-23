@@ -11,16 +11,20 @@
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          ユーザー
+        <% if @current_user %>
+        <%= @current_user.name %>
+        <% else %>
+        ユーザー
+        <% end %>
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <% if @current_user %>
+        <% if @current_user %>
             <%= link_to 'マイページ', mypage_path, class: 'dropdown-item' %>
             <%= link_to 'ログアウト', logout_path, method: :delete, class: 'dropdown-item' %>
-          <% else %>
+        <% else %>
             <%= link_to '新規登録', new_user_path, class: 'dropdown-item' %>
             <%= link_to 'ログイン', root_path, class: 'dropdown-item' %>
-          <% end %>
+        <% end %>
         </div>
       </li>
     </ul>

@@ -25,5 +25,13 @@ class Board < ApplicationRecord
   validates :address, presence: true, length: { maximum: 20}
   validates :mail, presence: true, length: { maximum: 40}
   validates :user_id, presence: true
+
+  def self.search(search)
+    if search
+      Board.where(['title LIKE ? OR address LIKE ? OR comment LIKE ?', "%#{search}%","%#{search}%","%#{search}%"]) 
+    else
+      Board.all
+    end
+  end    
   
 end

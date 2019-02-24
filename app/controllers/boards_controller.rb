@@ -3,6 +3,7 @@ class BoardsController < ApplicationController
   
   def index
     @boards = params[:tag_id].present? ? Tag.find(params[:tag_id]).boards : Board.all
+    @boards = Board.search(params[:search])
     @boards = @boards.order(created_at: :desc).page(params[:page]).per(5)
   end  
 
@@ -41,8 +42,9 @@ class BoardsController < ApplicationController
     @board.destroy
     redirect_to boards_path, flash: {notice: "「ID番号#{@board.id}の投稿が削除されました」"}
   end  
-  
+
   private
+  
   def board_params
     params.require(:board).permit(:title, :body, :image, :address, :mail, :comment, tag_ids: [])
   end 

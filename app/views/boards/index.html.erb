@@ -20,7 +20,13 @@
 <% if flash[:notice] %>
   <div class="alert alert-danger"><%= flash[:notice] %></div>
 <% end %>
-
+<form class="form-inline my-2 my-lg-0">
+      <%= form_tag(boards_path, :method => 'get') do %>
+        <%= text_field_tag :search %>
+        <%= submit_tag 'Search', :name => nil %>
+      <% end %>  
+</form>
+<p>
 <table class="table table-hover boards__table">
   <thead class="thead-dark">
     <tr>

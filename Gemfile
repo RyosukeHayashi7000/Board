@@ -45,6 +45,7 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.8'
   gem 'diff-lcs'
   gem 'factory_bot_rails'
+  gem 'rails-controller-testing'
 end
 
 group :development do

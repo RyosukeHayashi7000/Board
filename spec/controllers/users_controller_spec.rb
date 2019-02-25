@@ -18,7 +18,7 @@ RSpec.describe UsersController, type: :controller do
     
     describe 'POST #create' do
         before do
-            @referer = 'http://localhost'
+            @referer = 'http://test.host/'
             @request.env['HTTP_REFFERE'] = @referer
         end   
     
@@ -42,7 +42,7 @@ RSpec.describe UsersController, type: :controller do
         end
 
         context 'パラメーターに正しいユーザー名、確認パスワードが含まれていない場合' do
-            brefore do
+            before do
                 post(:create, params: {
                     user: {
                         name: 'ユーザー1',
@@ -56,7 +56,7 @@ RSpec.describe UsersController, type: :controller do
             end
             
             it 'ユーザー名のエラーメッセージが含まれること' do
-                expect(flash[:error_messages]).to include 'ユーザー名は小文字英数字で入力してください'
+                expect(flash[:error_messages]).to include 'ユーザー名は小文字英数字で入力して下さい'
             end
             
             it 'パスワード確認のエラーメッセージが含まれていること' do

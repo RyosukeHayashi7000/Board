@@ -28,7 +28,7 @@
 </form>
 <p>
 <table class="table table-hover boards__table">
-  <thead class="thead-dark">
+  <thead class="bg-info text-white">
     <tr>
       <th>ID</th>
       <th>画像</th>
@@ -50,11 +50,15 @@
      <%= image_tag board.image_url(:thumb) if board.image.present? %>
      </td>
      <td><%= board.title %></td>
-     <% if @current_user.id == board.user_id %>
-      <td><%= User.find_by(id:board.user_id).name %></td>
-     <% else %>
-     <td><%= link_to User.find_by(id:board.user_id).name, user_path(board.user_id) %></td>
-     <% end %>
+     <% if @current_user %>
+      <% if @current_user.id == board.user_id %>
+        <td><%= User.find_by(id:board.user_id).name %></td>
+      <% else %>
+      <td><%= link_to User.find_by(id:board.user_id).name, user_path(board.user_id) %></td>
+      <% end %>  
+    <% else %>
+      <td><%= link_to User.find_by(id:board.user_id).name, user_path(board.user_id) %></td>
+    <% end %>
      <td><%= board.address %></td>
      <td><%= board.created_at.to_s(:datetime_jp) %></td>
      <td><%= link_to "詳細", board, class: 'btn btn-outline-dark' %></td>

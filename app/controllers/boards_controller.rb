@@ -2,8 +2,13 @@ class BoardsController < ApplicationController
   before_action :ensure_correct_user, only: %i[edit update destroy]
   
   def index
-    @boards = params[:tag_id].present? ? Tag.find(params[:tag_id]).boards : Board.all
-    @boards = Board.search(params[:search])
+    if params[:tag_id].present?
+      @boards = Tag.find(params[:tag_id]).boards
+    elsif params[:search].present?
+      @boards = Board.search(params[:search])
+    else
+      @boards =  Board.all
+    end
     @boards = @boards.order(created_at: :desc).page(params[:page]).per(5)
   end  
 

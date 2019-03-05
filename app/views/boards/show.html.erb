@@ -4,7 +4,10 @@
     <% if @current_user %>
       <% if @current_user.id == @user.id %>
       <%= link_to "編集", edit_board_path(@board), class: 'btn btn-outline-dark' %>
-      <%= link_to "削除", board_path(@board), class: 'btn btn-outline-dark', method: :delete %>
+      <%= link_to "削除", board_path(@board), class: 'btn btn-outline-dark', method: :delete, 
+        data: {confirm: '本当に削除しても良いですか?',
+        cancel: 'やめる',
+        commit: '削除する'}, title: '削除確認' %>
       <% end %>
     <% end %>  
   </div>

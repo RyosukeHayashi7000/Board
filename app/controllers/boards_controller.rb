@@ -13,7 +13,11 @@ class BoardsController < ApplicationController
   end  
 
   def new
-    @board = Board.new(flash[:board])
+    if @current_user
+      @board = Board.new(flash[:board])
+    else
+      redirect_to boards_path
+    end
   end
 
   def create
@@ -60,10 +64,14 @@ class BoardsController < ApplicationController
   
   def ensure_correct_user
     @board = Board.find_by(id:params[:id])
-    if @board.user_id != @current_user.id
-      flash[:notice] = "権限がありません"
+    if @current_user
+      if @board.user_id != @current_user.id
+        flash[:notice] = "権限がありません"
+        redirect_to boards_path
+      end
+    else
       redirect_to boards_path
     end
-  end     
+  end       
 end
 

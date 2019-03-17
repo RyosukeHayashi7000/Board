@@ -29,6 +29,10 @@ class UsersController < ApplicationController
     @boards = @boards.order(created_at: :desc).page(params[:page]).per(5)
   end  
 
+  def likes
+    @favorites = Favorite.where(user_id: @current_user.id)
+    @favorites = @favorites.order(created_at: :desc).page(params[:page]).per(5)
+  end
   private
 
   def user_params

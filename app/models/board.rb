@@ -17,6 +17,8 @@ class Board < ApplicationRecord
   mount_uploader :image, ImageUploader
   has_many :board_tag_relations, dependent: :delete_all
   has_many :tags, through: :board_tag_relations
+  has_many :favorites
+  has_many :users, through: :favorites
   belongs_to :user
 
   

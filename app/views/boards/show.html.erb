@@ -3,11 +3,17 @@
     <%= link_to "一覧", boards_path, class: 'btn btn-outline-dark' %>
     <% if @current_user %>
       <% if @current_user.id == @user.id %>
-      <%= link_to "編集", edit_board_path(@board), class: 'btn btn-outline-dark' %>
-      <%= link_to "削除", board_path(@board), class: 'btn btn-outline-dark', method: :delete, 
-        data: {confirm: '本当に削除しても良いですか?',
-        cancel: 'やめる',
-        commit: '削除する'}, title: '削除確認' %>
+        <%= link_to "編集", edit_board_path(@board), class: 'btn btn-outline-dark' %>
+        <%= link_to "削除", board_path(@board), class: 'btn btn-outline-dark', method: :delete, 
+          data: {confirm: '本当に削除しても良いですか?',
+          cancel: 'やめる',
+          commit: '削除する'}, title: '削除確認' %>
+      <% else %>
+        <% if Favorite.find_by(user_id:@current_user.id, board_id:@board.id) %>
+          <%= link_to "お気に入り解除", favorite_path(@board), class: 'btn btn-outline-dark', method: :delete %>
+        <% else %>
+          <%= link_to "お気に入り登録", add_board_path(@board), class: 'btn btn-outline-dark', method: :post %>
+        <% end %>
       <% end %>
     <% end %>  
   </div>
@@ -52,8 +58,4 @@
       <div class="comment">
         <%= simple_format(@board.comment) %>
       </div>  
-　 </div>
-  
-  
-  
 </div>

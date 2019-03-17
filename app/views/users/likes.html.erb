@@ -1,0 +1,47 @@
+<h1>マイページ</h1>
+<% if flash[:notice] %>
+  <div class="alert alert-primary"><%= flash[:notice] %></div>
+<% end %>
+<h4>ユーザー名: <%= @current_user.name %>さん</h4>
+<div class="ml-auto boards__linkBox">
+<%= link_to "投稿一覧", mypage_path(@current_user) %>  
+ お気に入り一覧
+</div>
+<table class="table table-hover boards__table">
+  <thead class="bg-info text-white">
+    <tr>
+      <th>ID</th>
+      <th>画像</th>
+      <th>品物名</th>
+      <th>作成者</th>
+      <th>受け渡し場所</th>
+      <th>作成日時</th>
+      <th></th>
+      <th></th>
+      
+    </tr>
+  </thead>
+  <tbody>
+  
+ <% @favorites.each do |favorite| %>
+   
+    <% @board = Board.find_by(id: favorite.board_id) %>
+     <% if @board %>
+      <tr>
+      <th><%= @board.id %></th>
+      <td>
+      <%= image_tag @board.image_url(:thumb) if @board.image.present? %>
+      </td>
+      <td><%= @board.title %></td>
+      <td><%= User.find_by(id:@board.user_id).name %></td>
+      <td><%= @board.address %></td>
+      <td><%= @board.created_at.to_s(:datetime_jp) %></td>
+      <td><%= link_to "詳細", @board, class: 'btn btn-outline-dark' %></td>
+      </tr>
+    
+     <% end %>    
+ <% end %>
+  
+</tbody>
+</table>
+<%= paginate @favorites %>

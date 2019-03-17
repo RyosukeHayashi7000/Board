@@ -2,6 +2,9 @@
 <% if flash[:notice] %>
   <div class="alert alert-danger"><%= flash[:notice] %></div>
   <% end %>
+<p>・譲りたい物品を掲載できる掲示板です。</p>
+<p>・ユーザー登録した方のみ情報をアップできます。</p>
+<p>・ユーザー登録した方のみ連絡先を確認できます。</p>
 <%= form_for(:session, method: :post, url: login_path) do |f| %>
   <div class="form-group">
     <%= f.label :name, 'ユーザー名' %>
@@ -13,3 +16,5 @@
   </div>
   <%= f.submit 'ログイン', class: 'btn btn-primary' %>
 <% end %>
+<br>
+<%= link_to 'ユーザー新規登録', new_user_path, class: 'btn btn-primary' %>

@@ -3,8 +3,10 @@
   <div class="alert alert-primary"><%= flash[:notice] %></div>
 <% end %>
 <h4>ユーザー名: <%= @current_user.name %>さん</h4>
-<p>
-<p>投稿一覧</p>
+<div class="ml-auto boards__linkBox">
+投稿一覧  
+ <%= link_to "お気に入り一覧", likes_user_path(@current_user) %>
+</div>  
 <table class="table table-hover boards__table">
   <thead class="bg-info text-white">
     <tr>

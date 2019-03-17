@@ -7,6 +7,12 @@ Rails.application.routes.draw do
   #root 'boards#index'
   root 'home#index'
   resources :users, only: %i[new create show]
-  resources :boards
+  resources :boards do
+    member do
+      post 'add' => 'favorites#create'
+    end
+  end
+  
+  resources :favorites, only: %i[destroy] 
 end  
 
